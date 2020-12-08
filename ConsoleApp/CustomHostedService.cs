@@ -66,7 +66,9 @@ namespace ConsoleApp
                 {
                     if (!Directory.Exists(_options.Saida))
                         Directory.CreateDirectory(_options.Saida);
-                    File.WriteAllLines(($"{_options.Saida}\\Resultado_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.csv"), valores);
+                    string caminhoArquivo = $"{_options.Saida}\\Resultado_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.csv";
+                    File.WriteAllLines(caminhoArquivo, valores);
+                    _logger.LogInformation($"Arquivo gerado: {Directory.GetCurrentDirectory()}{caminhoArquivo}");
                 }
             }
             else
