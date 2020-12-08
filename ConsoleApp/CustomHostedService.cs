@@ -63,7 +63,11 @@ namespace ConsoleApp
                                select string.Join(";",x.Id, x.DataReferencia.ToShortDateString(), y.Valor)).ToList());
                 }
                 if (valores != null && valores.Count > 0)
+                {
+                    if (!Directory.Exists(_options.Saida))
+                        Directory.CreateDirectory(_options.Saida);
                     File.WriteAllLines(($"{_options.Saida}\\Resultado_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.csv"), valores);
+                }
             }
             else
                 _logger.LogInformation($"Não existem items a serem processados.");
